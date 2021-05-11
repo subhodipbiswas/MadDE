@@ -71,7 +71,7 @@ fun = @(var) tune_hyperparameters(var, num_hyper);
 %% Tune MadDE using Surrogate-based Bayesian Hyperparameter Optimizer.
 % Run the bayesopt for 'budget' FEs and get the solution
 
-budget = 2;  % Define the maximum number of function evaluations (FEs)
+budget = 128;  % Define the maximum number of function evaluations (FEs)
 warm_start = true; % use this if you already have some stored hyperparamter values
 
 fprintf('\n\n Starting hyperparameter tuning at %s.\n\n', string(datetime));
