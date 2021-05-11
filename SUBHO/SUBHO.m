@@ -18,8 +18,11 @@ mex cec21_rot_func.cpp -DWINDOWS
 mex cec21_shift_func.cpp -DWINDOWS
 mex cec21_shift_rot_func.cpp -DWINDOWS
 
+mkdir('Hyperparameters')
+mkdir('Results')
+mkdir('Solutions')
 clc;
-clear all;
+clear;
 
 %% Hyper parameter space
 % Define the optimization variables corresponding the hyperparameter space
@@ -73,8 +76,7 @@ fun = @(var) tune_hyperparameters(var, num_hyper);
 
 budget = 128;  % Define the maximum number of function evaluations (FEs)
 warm_start = true; % use this if you already have some stored hyperparamter values
-
-fprintf('\n\n Starting hyperparameter tuning at %s.\n\n', string(datetime));
+fprintf('\n\n Starting SUBHO at %s.\n\n', string(datetime));
 
 %% Performing SUBHO via bayesopt module
 rng(1);   % you can use any seed other than 1
@@ -105,9 +107,10 @@ end
 
 if ~warm_start
     % Run MadDE from scratch to with the manually found hyperparameters
-    % MadDE(q_cr_rate, p_best_rate, arc_rate, mem_mult, pop_mult, sf_init, cr_init, 'MadDEv0.0');
+    % MadDE(q_cr_rate, p_best_rate, arc_rate, mem_mult, pop_mult, sf_init, cr_init, 'MadDEv0.0');    
+    fprintf('\n Generating results of MadDE with manually-found hyperparameters.\n')
     MadDE(1, 10, 140, 500, 250, 50, 50, 'MadDEv0.0');
-    
+    fprintf('\n Proposing automated hyperparameters using BayesOpt...\n\n')
     % use bayesopt to find better hyperparameters
     results = bayesopt(fun, var,...
         'Verbose', 1,...
