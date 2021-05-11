@@ -14,10 +14,7 @@ The code for the algorithm has been obtained from [github.com/P-N-Suganthan](htt
 ### Execution Instructions
 *******************************************
 
-**Step 1**. Run the file ``make_cec2021.m`` to generate the .mex files corresponding to the *.cpp files. 
-
-
-**Step 2**. Run the file ``main.m`` to simulate the sample runs on CEC 2021 benchmark. The results are stored in the ``Results`` folder.
+Run the file ``main.m`` to simulate the sample runs on CEC 2021 benchmark and store the results in the ``Results`` folder.
 
 ### Queries
 *******************************************

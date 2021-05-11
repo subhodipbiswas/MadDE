@@ -23,10 +23,7 @@ See the details of L-SHADE in the following paper:
 ### Execution Instructions
 *******************************************
 
-**Step 1**. Run the file ``make_cec2021.m`` to generate the .mex files corresponding to the *.cpp files. 
-
-
-**Step 2**. Run the file ``main.m`` to simulate the sample runs of **LSHADE** on CEC 2021 benchmark. The results are stored in the ``Results`` folder.
+Run the file ``main.m`` to simulate the sample runs of **LSHADE** on CEC 2021 benchmark and store the output in the ``Results`` folder.
 
 ### Queries
 *******************************************

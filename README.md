@@ -10,6 +10,8 @@ LSHADE
 LSHADE_cnEpSin
 ```
 
+## SUrrogate-assisted Bayesian Hyperparameter Optimizer (SUBHO)
+`SUBHO` is a hyperparameter optimizer used for finding optimal configuration of hyperparameters for a general optimizers by using the idea of Bayesian Optimization. Here, we use **SUBHO** to tune the hyperparameters of the proposed **MadDE** algorithm using MATLAB's `bayesopt` package. The framework is general and can be applied to similarly tune the hyperparameters of any optimization algorithm. For more details kindly refer to our published paper.
 
 
 ## Folder Structure
@@ -43,19 +45,29 @@ LSHADE_cnEpSin
   │   └── Results - results of simulating MadDE
   │  
   └── calc_score.m - Calculate the score of the baseline algorithms
+  │
+  ├── SUBHO/ -
+  │   ├── SUBHO.m - code to simulate hyperprameter tuning
+  │   └── Hyperparameters/ - hyperparameter configurations (if any) found by SUBHO earlier 
+  │   └── readHPTs - reads the scores corresponding the results stored in 'Hyperparameters'
+  │   └── getScoreopt.m - scores a hyperparameter configuration found by SUBHO w.r.t. to manual version
+  │   └── tune_hyperparameters.m - the scoring function supplied to MATLAB's "bayesopt" library for tuning parameters
   ```
-
-
 
 ### Comparing the optimizers
 
-We have provided the results of the baseline algorithms. You can find their relative performance by running the file `calc_score.m`. **Note:** The results might slightly vary from machine to machine, and you might want to simulate all the algorithms on your own machine before computing their *relative performance*.
+We have provided the results of the baseline algorithms. You can find their relative performance by running the file `calc_score.m`. **Note:** The results might slightly vary from machine to machine due to the random number generators. We suggest you simulate all the algorithms on your own machine before computing their *relative performance*.
+
+
+
 
 
 ## Citation
-If you use this data/code for your work, please consider citing the paper:
-````
-S. Biswas, D. Saha, S. De, A. D. Cobb, S. Das and B. A. Jalaian, "A multiple adaptation-based Differential Evolutionfor global numerical optimization," 2021 IEEE Congress on Evolutionary Computation (CEC), Kraków, Poland, 2021.
-````
+If you use this data/code for your work, please consider citing our paper:
+
+```
+S. Biswas, D. Saha, S. De, A. D. Cobb, S. Das and B. A. Jalaian, "Improving Differential Evolution through Bayesian
+Hyperparameter Optimization," 2021 IEEE Congress on Evolutionary Computation (CEC), Kraków, Poland, 2021.
+```
 ## Help
 Should you have queries, please reach out to (sub17was, debanjansh) [at] gmail.com.
