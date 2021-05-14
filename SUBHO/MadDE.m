@@ -12,7 +12,7 @@ cr_init = cr_init/100;
 format long;
 num_runs=30;
 fhd=@Parametrized_benchmark_func;
-
+p = parpool();    % Starting the parallel pool
 Rand_Seeds=load('input_data/Rand_Seeds.txt');
 optimum= [100, 1100, 700, 1900, 1700, 1600, 2100, 2200, 2400, 2500];
 
@@ -332,6 +332,6 @@ for problem_size = [10 20]
         end %% end 1 function run
     end %% end of a transformation & all functions
 end %% end of the dimension
-
+delete(gcp('nocreate'));   % close parallel pool to prevent memory overflow
 
 end

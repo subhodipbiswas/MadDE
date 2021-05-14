@@ -17,10 +17,10 @@ mex cec21_bias_shift_rot_func.cpp -DWINDOWS
 mex cec21_rot_func.cpp -DWINDOWS
 mex cec21_shift_func.cpp -DWINDOWS
 mex cec21_shift_rot_func.cpp -DWINDOWS
-
 mkdir('Hyperparameters')
 mkdir('Results')
 mkdir('Solutions')
+pause(5);
 clc;
 clear;
 
@@ -121,6 +121,8 @@ if ~warm_start
         'OutputFcn',[],'PlotFcn',[]);
 end
 
+clc;
+
 %% Get the results
 bayesian_hpts = table2array(results.XAtMinEstimatedObjective);
 disp(bayesian_hpts); % Print the result of the run
@@ -133,5 +135,12 @@ mem_mult = bayesian_hpts(4);
 pop_mult = bayesian_hpts(5);
 sf_init = bayesian_hpts(6);
 cr_init = bayesian_hpts(7);
+fprintf('\n Generating results of MadDE with hyperparameters found by SUBHO...\n')
 MadDE(q_cr_rate, p_best_rate, arc_rate, mem_mult, pop_mult, sf_init,...
     cr_init, 'MadDEvHPT')
+% compute score of this parameteric configuration w.r.t. MadDEv0.0
+[score_1, score_2] = getScoreopt();
+fprintf('\n\nScores of MadDE with \n');
+fprintf('\t      manually-found hyperparameters: %2.2f\n', score_2);
+fprintf('\t automatically-found hyperparameters: %2.2f\n', score_1);
+    
