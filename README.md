@@ -63,11 +63,23 @@ We have provided the results of the baseline algorithms. You can find their rela
 
 
 ## Citation
-If you use this data/code for your work, please consider citing our paper:
+If you use this data/code for your work, please consider citing our paper/GitHub repository:
 
-```
+`
 S. Biswas, D. Saha, S. De, A. D. Cobb, S. Das and B. A. Jalaian, "Improving Differential Evolution through Bayesian
 Hyperparameter Optimization," 2021 IEEE Congress on Evolutionary Computation (CEC), Kraków, Poland, 2021.
+`
+
+```
+@INPROCEEDINGS{biswas2021madde,
+  author={Biswas, Subhodip and Saha, Debanjan and De, Shuvodeep and Cobb, Adam D. and Das, Swagatam and Jalaian, Brian A.},
+  booktitle={2021 IEEE Congress on Evolutionary Computation (CEC)}, 
+  title={Improving Differential Evolution through Bayesian Hyperparameter Optimization}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={},
+  doi={10.5281/zenodo.4762289}}
 ```
 ## Help
 Should you have queries, please reach out to (sub17was, debanjansh) [at] gmail.com.
