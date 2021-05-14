@@ -8,7 +8,6 @@
 % For any queries please feel free to contact us
 % Subhodip Biswas : sub17was(at)gmail.com
 % Debanjan Saha   : debanjansh(at)gmail.com
-
 mex cec21_basic_func.cpp -DWINDOWS
 mex cec21_bias_func.cpp -DWINDOWS
 mex cec21_bias_rot_func.cpp -DWINDOWS
@@ -21,9 +20,8 @@ mkdir('Hyperparameters')
 mkdir('Results')
 mkdir('Solutions')
 pause(5);
-clc;
 clear;
-
+clc;
 %% Hyper parameter space
 % Define the optimization variables corresponding the hyperparameter space
 % In this case, we are using Mad DE hyper-parameters:
@@ -71,33 +69,31 @@ end
 %% Define the objective function handle
 fun = @(var) tune_hyperparameters(var, num_hyper);
 
-%% Tune MadDE using Surrogate-based Bayesian Hyperparameter Optimizer.
+%% Tune MadDE using SUrrogate-based Bayesian Hyperparameter Optimizer.
 % Run the bayesopt for 'budget' FEs and get the solution
-
+rng(1);   % you can use any seed other than 1
 budget = 128;  % Define the maximum number of function evaluations (FEs)
 warm_start = true; % use this if you already have some stored hyperparamter values
 fprintf('\n\n Starting SUBHO at %s.\n\n', string(datetime));
 
-%% Performing SUBHO via bayesopt module
-rng(1);   % you can use any seed other than 1
-
 if warm_start
     prev_parms = readHPTs('Hyperparameters');
     [numHPTs, ~] = size(prev_parms);
-    
     if numHPTs > 0
         rec_parms = table(prev_parms(:,1),prev_parms(:,2),prev_parms(:,3),...
             prev_parms(:,4),prev_parms(:,5),prev_parms(:,6),prev_parms(:,7));
 
         score_1 = prev_parms(:,8);
         score_2 = prev_parms(:,9);
-        rec_obj = score_2 + 100 - score_1;
+        objective = score_2 + 100 - score_1;
+        % We assume that MadDE has already been run using manually-found
+        % hyperparameters. So we run bayesopt to find new hyperparameters.
         results = bayesopt(fun, var, 'Verbose', 1,'UseParallel', false,...
             'AcquisitionFunctionName', 'expected-improvement',...
             'IsObjectiveDeterministic', false,...
             'MaxObjectiveEvaluations', numHPTs + budget,...
             'InitialX', rec_parms,...
-            'InitialObjective', rec_obj,...
+            'InitialObjective', objective,...
             'SaveVariableName','BayesIterations',...
             'OutputFcn',[],'PlotFcn',[]);
     else
@@ -121,13 +117,12 @@ if ~warm_start
         'OutputFcn',[],'PlotFcn',[]);
 end
 
-clc;
-
 %% Get the results
+clc;
+fprintf('\n The best hyperparameters found by SUBHO are as follows...\n')
 bayesian_hpts = table2array(results.XAtMinEstimatedObjective);
 disp(bayesian_hpts); % Print the result of the run
-
-% Add code to call MadDE using using values stored in 'bayesian_hpts'
+% Call MadDE using using values stored in 'bayesian_hpts'
 q_cr_rate = bayesian_hpts(1);
 p_best_rate = bayesian_hpts(2);
 arc_rate = bayesian_hpts(3);
@@ -138,9 +133,8 @@ cr_init = bayesian_hpts(7);
 fprintf('\n Generating results of MadDE with hyperparameters found by SUBHO...\n')
 MadDE(q_cr_rate, p_best_rate, arc_rate, mem_mult, pop_mult, sf_init,...
     cr_init, 'MadDEvHPT')
-% compute score of this parameteric configuration w.r.t. MadDEv0.0
+% Compute the scores of MadDE with the two parameteric configuration
 [score_1, score_2] = getScoreopt();
 fprintf('\n\nScores of MadDE with \n');
 fprintf('\t      manually-found hyperparameters: %2.2f\n', score_2);
 fprintf('\t automatically-found hyperparameters: %2.2f\n', score_1);
-    
