@@ -1,5 +1,8 @@
-# MadDE
-This GitHub repository is for the **M**ultiple **ad**aptation **D**ifferential **E**volution (**MadDE**) algorithm that was accepted at the CEC 2021 Special Session and Competition on single-objective bound-constrained numerical optimization problem.
+# Improving Evolutionary Algorithms through Bayesian Hyperparameter Optimization
+This GitHub repository is for the paper titled ``Improving Differential Evolution through Bayesian Hyperparameter Optimization`` that got accepted at the IEEE Congress on Evolutionary Computation, 2021. In this work, we propose an Evolutionary Algorithm (EA) called **MadDE** that is built on top of the classical [Differential Evolution](https://link.springer.com/chapter/10.1007/978-3-642-30504-7_8) algortihm, a well-known EA used for real-parameter, derivative-free, bound-constrained global optimization problems. Additionally, we propose the **SUBHO** algorithm for tuning the hyperparameters of any EA and demonstrate it on our **MadDE** algorithm.
+
+## MadDE
+ **M**ultiple **ad**aptation **D**ifferential **E**volution (**MadDE**) algorithm that was accepted at the CEC 2021 Special Session and Competition on single-objective bound-constrained numerical optimization problem.
 
 We have also provided the codes of baseline methods that we compared **MadDE** against the following:
 ```
@@ -57,9 +60,6 @@ LSHADE_cnEpSin
 ### Comparing the optimizers
 
 We have provided the results of the baseline algorithms. You can find their relative performance by running the file `calc_score.m`. **Note:** The results might slightly vary from machine to machine due to the random number generators. We suggest you simulate all the algorithms on your own machine before computing their *relative performance*.
-
-
-
 
 
 ## Citation
