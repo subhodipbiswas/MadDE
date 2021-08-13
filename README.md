@@ -1,4 +1,4 @@
-# Improving Evolutionary Algorithms through Bayesian Hyperparameter Optimization
+# Improving Differential Evolution through Bayesian Hyperparameter Optimization
 This GitHub repository is for the paper titled ``Improving Differential Evolution through Bayesian Hyperparameter Optimization`` that got accepted at the IEEE Congress on Evolutionary Computation, 2021. In this work, we propose an Evolutionary Algorithm (EA) called **MadDE** that is built on top of the classical [Differential Evolution](https://link.springer.com/chapter/10.1007/978-3-642-30504-7_8) algortihm, a well-known EA used for real-parameter, derivative-free, bound-constrained global optimization problems. Additionally, we propose the **SUBHO** algorithm for tuning the hyperparameters of any EA and demonstrate it on our **MadDE** algorithm.
 
 ## MadDE
@@ -64,22 +64,22 @@ We have provided the results of the baseline algorithms. You can find their rela
 
 ## Citation
 If you use this data/code for your work, please consider citing our paper/GitHub repository:
+```
+S. Biswas, D. Saha, S. De, A. D. Cobb, S. Das and B. A. Jalaian, "Improving Differential Evolution through Bayesian Hyperparameter Optimization," 2021 IEEE Congress on Evolutionary Computation (CEC), 2021, pp. 832-840, doi: 10.1109/CEC45853.2021.9504792.
+```
 
-`
-S. Biswas, D. Saha, S. De, A. D. Cobb, S. Das and B. A. Jalaian, "Improving Differential Evolution through Bayesian
-Hyperparameter Optimization," 2021 IEEE Congress on Evolutionary Computation (CEC), Kraków, Poland, 2021.
-`
+OR
 
 ```
 @INPROCEEDINGS{biswas2021madde,
-  author={Biswas, Subhodip and Saha, Debanjan and De, Shuvodeep and Cobb, Adam D. and Das, Swagatam and Jalaian, Brian A.},
+  author={Biswas, Subhodip and Saha, Debanjan and De, Shuvodeep and Cobb, Adam D and Das, Swagatam and Jalaian, Brian A},
   booktitle={2021 IEEE Congress on Evolutionary Computation (CEC)}, 
   title={Improving Differential Evolution through Bayesian Hyperparameter Optimization}, 
   year={2021},
   volume={},
   number={},
-  pages={},
-  doi={10.5281/zenodo.4762289}}
+  pages={832-840},
+  doi={10.1109/CEC45853.2021.9504792}}
 ```
 ## Help
 Should you have queries, please reach out to (sub17was, debanjansh) [at] gmail.com.
